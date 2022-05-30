@@ -9,8 +9,19 @@ This module is designated to integrate file searching program.
 As a premise, You have already installed Go. Then,
 
 ```bash
-$ go get github.com/shuyaeer/fingo
+go install github.com/shuyaeer/fingo@latest
 ```
+
+binary file is installed beneath your $GOPATH/
+
+```bash
+ $ ls $GOPATH/bin
+ fingo
+```
+
+## What can do
+
+Comming Soon
 
 ## Quick Start
 
