@@ -13,22 +13,23 @@ var RootCmd = &cobra.Command{
 	Use:   "fingo",
 	Short: "File system crawler",
 	Run: func(cmd *cobra.Command, args []string) {
-		exec(args)
+		file_ext, _ := cmd.Flags().GetString("extention")
+		crawl(args, file_ext)
 	},
 }
 
-func exec(args []string) {
-	if err := filepath.Walk(args[0], crawl); err != nil {
+func crawl(args []string, file_ext string) {
+	if err := filepath.Walk(args[0], func(path string, file_info os.FileInfo, err error) error {
+		if file_info.IsDir() {
+			fmt.Printf(" dir : %s\n", path)
+			return nil
+		} else {
+			fmt.Printf("file : %s\n", path)
+			// pos := strings.LastIndex(path, ".")
+			// println(path[pos:])
+			return nil
+		}
+	}); err != nil {
 		fmt.Println(err)
 	}
-}
-
-func crawl(path string, file_info os.FileInfo, err error) error {
-	if file_info.IsDir() {
-		fmt.Printf(" dir : %s\n", path)
-		return nil
-	} else {
-		fmt.Printf("file : %s\n", path)
-	}
-	return nil
 }
