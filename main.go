@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"example.com/fingo/cmd"
+	"github.com/shuyaeer/fingo/cmd"
 )
 
 func main() {
