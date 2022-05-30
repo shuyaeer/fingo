@@ -11,13 +11,13 @@ import (
 // todo: 特定の拡張子のみ検出、ファイルの中身まで探索
 var RootCmd = &cobra.Command{
 	Use:   "fingo",
-	Short: "File system walker",
+	Short: "File system crawler",
 	Run: func(cmd *cobra.Command, args []string) {
-		jikko(args)
+		exec(args)
 	},
 }
 
-func jikko(args []string) {
+func exec(args []string) {
 	if err := filepath.Walk(args[0], crawl); err != nil {
 		fmt.Println(err)
 	}
