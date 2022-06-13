@@ -22,11 +22,33 @@ binary file is installed beneath your $GOPATH/
 
 # Quick Start
 
-Comming Soon
+When you want to find csv files on whole your file system.
+
+```bash
+$ fingo / --extention csv
+file : /home/ubuntu/csv_files/2022-02-13.csv
+file : /home/ubuntu/csv_files/2022-03-13.csv
+file : /home/ubuntu/2022-04-13.csv
+                :
+                :
+```
+
+When you want to find file by file name/
+
+```bash
+$ fingo / --name 2022-04-13
+file : /home/ubuntu/2022-04-13.csv
+file : /home/ubuntu/2022-04-13.txt
+file : /home/ubuntu/documents/2022-04-13.pdf
+                :
+                :
+```
+
 
 # Options
 
 ```text
 -h, --help        ・print help text and exit
 -e, --extention   ・extracting file match the FileExtention
+-n --name         ・search file based on designated file name
 ```
