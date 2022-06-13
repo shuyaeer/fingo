@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -14,15 +15,26 @@ var RootCmd = &cobra.Command{
 	Short: "File system crawler",
 	Run: func(cmd *cobra.Command, args []string) {
 		file_ext, _ := cmd.Flags().GetString("extention")
-		crawl(args, file_ext)
+		targetFileName, _ := cmd.Flags().GetString("name")
+		// Todo: argument varidation
+		crawl(args, file_ext, targetFileName)
 	},
 }
 
-func crawl(args []string, file_ext string) {
+// Todo: split func
+func crawl(args []string, fileExt string, targetFileName string) {
 	if err := filepath.Walk(args[0], func(path string, file_info os.FileInfo, err error) error {
-		if file_ext != "" {
+		if fileExt != "" {
 			ext := filepath.Ext(path)
-			if ext == "."+file_ext {
+			if ext == "."+fileExt {
+				fmt.Printf("file : %s\n", path)
+				return nil
+			} else {
+				return nil
+			}
+			// may
+		} else if targetFileName != "" {
+			if strings.Contains(path, targetFileName) {
 				fmt.Printf("file : %s\n", path)
 				return nil
 			} else {
@@ -39,3 +51,11 @@ func crawl(args []string, file_ext string) {
 		fmt.Println(err)
 	}
 }
+
+// func matchExtentionName(fileExtention string) {
+
+// }
+
+// func matchFileName(targetFileName string) {
+
+// }
